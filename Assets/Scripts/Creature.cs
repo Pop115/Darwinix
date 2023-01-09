@@ -5,7 +5,7 @@ using UnityEngine;
 public class Creature : MonoBehaviour
 {
 
-    public static int creaturesNb = 0;
+    public static int creaturesNb = 1;
 
     public HealthBar healthBar;
 
@@ -52,6 +52,8 @@ public class Creature : MonoBehaviour
 
     void Update()
     {
+        Time.timeScale = 100f/ creaturesNb;
+
         // If the creature's health is less than or equal to 0, destroy it
         if (health <= 0)
         {
@@ -72,7 +74,7 @@ public class Creature : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, transform.position.y, targetPosition.z), speed * Time.deltaTime);
         }
 
-        if(Time.time - lastReproduceTime > reproduceCooldown && creaturesNb < 100)
+        if(Time.time - lastReproduceTime > reproduceCooldown && creaturesNb < 50)
         {
             Reproduce();
             lastReproduceTime = Time.time;
